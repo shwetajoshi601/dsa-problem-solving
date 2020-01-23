@@ -12,7 +12,7 @@ class BSTInvertTree {
         if(root == null)
             return root;
         
-            // swap the left and right child
+        // swap the left and right child
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
