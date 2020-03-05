@@ -6,9 +6,8 @@ class ArrSortByNoOf1Bits {
         Integer[] nums = new Integer[arr.length];
         
         // convert to array of objects
-        for(int i=0; i<arr.length;i++) {
+        for(int i=0; i<arr.length;i++)
             nums[i] = arr[i];
-        }
         
         // sort the array
         Arrays.sort(nums, new Comparator<Integer>() {
@@ -16,15 +15,8 @@ class ArrSortByNoOf1Bits {
                
                // if bit counts are equal
                if(Integer.bitCount(num1) == Integer.bitCount(num2))
-               {
                    // compare the numbers
-                   if(Integer.valueOf(num1) < Integer.valueOf(num2))
-                       return -1;
-                   else if(Integer.valueOf(num1) > Integer.valueOf(num2))
-                       return 1;
-                   else
-                       return 0;
-               }
+                   return (Integer.valueOf(num1) - Integer.valueOf(num2));
                
                // if bit counts are unequal
                // compare bitcounts
