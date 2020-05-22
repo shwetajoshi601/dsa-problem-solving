@@ -37,6 +37,12 @@ public class DestinationCity {
                 }
             }
         }
+
+        /**
+         * Another approach would be to create a map of source and dest in paths.
+         * For each city check if the city appears in key
+         * If it doesnt it is the destination
+         */
          return res;
     }
 }
