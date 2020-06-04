@@ -16,8 +16,6 @@ public class ArrMinSubsequenceNonIncreasing {
         for(int n: nums)
             totSum+=n;
         
-        int tot=totSum;
-        System.out.println(totSum);
         // sort the array
         Arrays.sort(nums);
         
@@ -28,13 +26,12 @@ public class ArrMinSubsequenceNonIncreasing {
             
             // sum of elements iterated so far - part of subsequence
             curSum+=nums[i];
-            System.out.println(curSum);
             // sum of all other elements - not part of the sequence
-            tot = totSum-curSum;
-            System.out.println(tot);
+            // tot = totSum-curSum;
+
             // totSum will contain sum of remaining elements
             // currSum -> sum of elements in subsequence
-            if(curSum > tot)
+            if(curSum > (totSum-curSum))
                 break;
         }
         
