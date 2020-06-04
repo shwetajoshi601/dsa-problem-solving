@@ -18,7 +18,7 @@ public class BTConstructStringFromTree {
        // if the current node is null
        if(t==null) return "";
        
-       // if the node is a leaf node - R
+       // if the node is a leaf node - r
        if(t.left==null && t.right==null) return String.valueOf(t.val);
        
        // get left subtree string - L
