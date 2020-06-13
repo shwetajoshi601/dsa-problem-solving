@@ -38,6 +38,7 @@ public class Day11ArrSortColors {
     public void sortColorsQuickSort(int[] nums) {
         int start=0, end=nums.length-1, curr=0;
         
+        // find the right positions of 0 and 2, 1s automatically come in the right positions
         while(curr <= end) {
             // check the value
             // value 0
@@ -55,7 +56,8 @@ public class Day11ArrSortColors {
                 // move left
                 end--;
                 // do not move curr ahead since after swapping with end, a new number appears at that position which needs to be processed
-            } else 
+            } else
+                // value 1 
                 // do nothing
                 curr++;
         }
