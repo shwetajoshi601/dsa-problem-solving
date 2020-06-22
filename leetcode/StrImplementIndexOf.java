@@ -14,7 +14,13 @@ public class StrImplementIndexOf {
         for(int i=0; i<m-n; i++) {
             // needle
             int j;
+            // int temp=i;
             // match each character from needle when a matching character is found
+            /**
+             * while(j<n && haystack.charAt(j) == needle.charAt(temp))
+             *      j++;
+             *      temp++;
+             */
             for(j=0; j<n; j++) {
                 // i+j gives the next character in haystack
                 // index of l-> 2, index of l in needle -> 0 i+j=2
