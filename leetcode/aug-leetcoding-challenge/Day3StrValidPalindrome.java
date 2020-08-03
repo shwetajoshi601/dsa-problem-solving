@@ -7,9 +7,6 @@ class Day3StrValidPalindrome {
         // to compare characters from the beginning and end
         int i=0, j=s.length()-1;
         
-        // ignore the case
-        s = s.toLowerCase();
-        
         // compare characters till they reach a common point
         while(i<=j) {
             // character at position i is not alphanumeric
@@ -20,7 +17,7 @@ class Day3StrValidPalindrome {
                 // character at position j is not alphanumeric
                 // move ahead and skip
                 j--;
-            } else if(s.charAt(i) != s.charAt(j))
+            } else if(Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j)))
                 // both characters at i and j are valid
                 // not a valid palindrome if the characters are not equal
                 return false;
