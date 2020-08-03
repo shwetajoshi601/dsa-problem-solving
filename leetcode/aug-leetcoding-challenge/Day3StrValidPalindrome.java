@@ -13,10 +13,10 @@ class Day3StrValidPalindrome {
         // compare characters till they reach a common point
         while(i<=j) {
             // character at position i is not alphanumeric
-            if(!(Character.isDigit(s.charAt(i)) || Character.isLetter(s.charAt(i)))) {
+            if(!(Character.isLetterOrDigit(s.charAt(i)))) {
                 // move ahead to skip the character
                 i++;
-            } else if(!(Character.isDigit(s.charAt(j)) || Character.isLetter(s.charAt(j)))) {
+            } else if(!(Character.isLetterOrDigit(s.charAt(j)))) {
                 // character at position j is not alphanumeric
                 // move ahead and skip
                 j--;
