@@ -35,6 +35,8 @@ class Day2DesignHashSet {
         int bucketIndex = hash(key);
         List<Integer> elems = buckets.get(bucketIndex);
         if(elems.contains(key))
+        // new Integer() creates wraps the value in an object which makes it possible to remove by value
+        // if an object is not passed to remove, the argument is considered as an index
             elems.remove(new Integer(key));
     }
     
