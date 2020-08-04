@@ -10,4 +10,18 @@ class Day4PowerOfFour {
         // after being completely divided by 4, the final number should be 1
         return num == 1;
     }
+
+    public boolean isPowerOfFourUsingLogs(int num) {
+        // if the number is a power of 4 the below expression should return an integer.
+        // for e.g. num = 16,
+        // log(16)/log(4) = 2 
+        // => 16 = 4^2 
+        // => taking logs, log(16) = log(4^2) => log(16) = 2.log(4) 
+        // => log(16)/log(4) = 2  
+        double ans = Math.log(num) / Math.log(4);
+        
+        // check if the number returned is an integer
+        // you could also do -> (int)ans == ans
+        return ans % 1 == 0;
+    }
 }
