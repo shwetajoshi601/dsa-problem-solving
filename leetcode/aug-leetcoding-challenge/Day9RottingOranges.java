@@ -21,6 +21,8 @@ class Day9RottingOranges {
         
         // no fresh oranges to rot
         if(freshCount == 0) return 0;
+        // directions indicate the position to move to
+        // for i,j -> the cells to check would be (i-1,j)=(-1,0), (i+1, j)=(1,0) and so on
         int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         
         int minutes = 0;
