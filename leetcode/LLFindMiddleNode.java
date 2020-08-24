@@ -43,4 +43,18 @@ public class LLFindMiddleNode {
         // return middle node
         return p;
     }
+
+    // Optimal solution
+    public ListNode middleNode(ListNode head) {
+        // use the hare and tortoise technique
+        ListNode slow=head, fast=head;
+        
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        // slow will have travelled half the distance as fast
+        return slow;
+    }
 }
