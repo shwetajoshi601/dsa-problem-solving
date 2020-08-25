@@ -1,4 +1,34 @@
 class PascalsTriangle {
+
+    public List<List<Integer>> generateBetterSoln(int numRows) {
+        List<List<Integer>> triangle = new ArrayList<>();
+        // invalid numRows
+        if(numRows == 0) return triangle;
+        
+        // first row is always 1
+        List<Integer> first_row = new ArrayList<Integer>();
+        first_row.add(1);
+        triangle.add(first_row);
+        
+        // start from the second row
+        for(int i=1; i<numRows; i++) {
+            // we need to sum elements from the prev row
+            List<Integer> prev = triangle.get(i-1);
+            List<Integer> curr = new ArrayList<Integer>();
+            // first element of every row is 1
+            curr.add(1);
+            
+            // sum consecutive two nums from the prev row
+            for(int j=1; j<i; j++)
+                curr.add(prev.get(j-1) + prev.get(j));
+            
+            // last element of each row is 1
+            curr.add(1);
+            triangle.add(curr);
+        }
+        
+        return triangle;
+    }
     
     void initialiseTriangle(List<List<Integer>> result) {
         List<Integer> row1 = new ArrayList<Integer>();
