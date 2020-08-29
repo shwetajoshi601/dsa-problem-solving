@@ -37,7 +37,7 @@ class Day27FindRightInterval {
         return res;
     }
 
-    // using TreeMap and use of Treemap.ceilingKey() method
+    // using TreeMap and use of Treemap.ceilingKey() method O(nlogn)
     public int[] findRightIntervalFaster(int[][] intervals) {
         int[] res = new int[intervals.length];
         
