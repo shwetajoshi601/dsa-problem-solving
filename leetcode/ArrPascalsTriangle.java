@@ -1,4 +1,4 @@
-class PascalsTriangle {
+class ArrPascalsTriangle {
 
     public List<List<Integer>> generateBetterSoln(int numRows) {
         List<List<Integer>> triangle = new ArrayList<>();
