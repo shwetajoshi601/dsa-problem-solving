@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-class GFG {
+class ArrFindFirstNonRepeatingNumber {
     
     static int findNonRepeatingNumber(int[] arr) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
