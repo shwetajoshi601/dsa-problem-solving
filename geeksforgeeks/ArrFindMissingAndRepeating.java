@@ -25,7 +25,38 @@ class ArrFindMissingAndRepeating
         }
         
         System.out.println();
-    } 
+    }
+    
+    // Using Swap Sort
+    static void findMissingRepeatingSwapSort(int[] nums) {
+        // check if the element at current index is at its right position
+        // if not, swap it with the element at its right position
+        // e.g. if arr[i] = 2, then 2's right pos is 1. so swap it with arr[1]
+        int i=0;
+        
+        while(i < nums.length) {
+            if(nums[i] != nums[nums[i]-1])
+                swap(nums, i, nums[i]-1);
+            else
+                i++;
+        }
+        
+        // at the end, all elements will  be at their correct positions
+        // except for the repeating element
+        // check if every element equals i+1. if not, the repeating elem is nums[i]
+        // the missing number is i+1
+        for(i=0; i<nums.length; i++) {
+            if(nums[i] != i+1) {
+                System.out.println(nums[i] + " " + Integer.valueOf(i+1));
+            }
+        }
+    }
+    
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
     
 	public static void main (String[] args)
 	 {
@@ -42,6 +73,7 @@ class ArrFindMissingAndRepeating
 	      }
          // function call here
          findMissingAndRepeating(nums);
+         findMissingRepeatingSwapSort(nums);
 	 	}
 	 }
 }
