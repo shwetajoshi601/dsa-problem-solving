@@ -1,12 +1,10 @@
 public class BuyAndSellStockII {
     public int maxProfit(int[] prices) {
+        // take sum of profits in consecutive transactions
         int maxProfit=0;
         
-        if(prices.length == 1)
-            return maxProfit;
-        
         for(int i=0; i<prices.length-1; i++) {
-            // compare the nexy day price
+            // compare the next day price
             if(prices[i+1] > prices[i])
                 // if the difference is positive
                 // add to the profit

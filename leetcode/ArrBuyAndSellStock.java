@@ -1,7 +1,7 @@
 class BuyAndSellStock {
-    public int maxProfit(int[] prices) {
-        
-        int profit = 0;
+    // brute force solution
+    public int maxProfitBrute(int[] prices) {
+
         // for buying price
         for(int i=0; i< prices.length; i++) {
             
@@ -19,5 +19,20 @@ class BuyAndSellStock {
         }
         
         return profit;
+    }
+
+    // O(n) solution
+    public int maxProfitBetter(int[] prices) {
+
+        int max_profit = 0, min_price = Integer.MAX_VALUE;
+
+        // max profit - min buying price, max selling price
+        for(int i=0; i< prices.length; i++) {
+            // find min price so far
+            min_price = Math.min(min_price, prices[i]);
+            // find max profit so far
+            max_profit = Math.max(max_profit, prices[i] - min_price); 
+        }
+        return max_profit;
     }
 }
