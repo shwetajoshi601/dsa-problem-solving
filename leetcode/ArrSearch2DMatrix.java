@@ -45,7 +45,7 @@ class ArrSearch2DMatrix {
         return false;
     }
 
-    // Optimal solution - O(log(m+n)) - using binary search
+    // Optimal solution - O(log(m*n)) - using binary search
     // Note: this will not work for gfg variant since it does specify that: 
     // each row's first element is greater than prev row's last element
     public boolean searchMatrix(int[][] matrix, int target) {
