@@ -40,7 +40,6 @@ class ArrLongestConsecutiveSequence {
         for(int num: nums)
             set.add(num);
         
-        
         for(int num: set) {
             // start from the smallest element in the sequence
             // e.g. 3214 -> num=3, but its a part of the sequence 1234, so skip it, it will be counted starting from 1
