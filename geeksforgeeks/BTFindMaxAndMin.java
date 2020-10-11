@@ -76,6 +76,7 @@
     //Complete the findMax and findMin functions.
     class GFG
     {
+        // recursive solution
         public static int findMax(Node root)
         {
             if(root == null) return Integer.MIN_VALUE;
@@ -117,6 +118,59 @@
                 
            if(root.data < min)
                 min = root.data;
+                
+           return min;
+        }
+
+        public static int findMaxUsingLevelOrder(Node root)
+        {
+            if(root == null) return Integer.MIN_VALUE;
+            
+            int max = Integer.MIN_VALUE;
+            Queue<Node> q = new LinkedList<Node>();
+            q.add(root);
+            
+            // level order traversal
+            while(!q.isEmpty()) {
+                Node curr = q.poll();
+                
+                // update the max if a greater element is found
+                if(curr.data > max)
+                    max = curr.data;
+                    
+                if(curr.left != null)
+                    q.add(curr.left);
+                    
+                if(curr.right != null)
+                    q.add(curr.right);
+            }
+                
+           return max;
+        }
+        
+        public static int findMinUsingLevelOrder(Node root)
+        {
+            // same approach as max
+            if(root == null) return Integer.MAX_VALUE;
+            
+            int min = Integer.MAX_VALUE;
+            Queue<Node> q = new LinkedList<Node>();
+            q.add(root);
+            
+            // level order traversal
+            while(!q.isEmpty()) {
+                Node curr = q.poll();
+                
+                // update the min if a smaller element is found
+                if(curr.data < min)
+                    min = curr.data;
+                    
+                if(curr.left != null)
+                    q.add(curr.left);
+                    
+                if(curr.right != null)
+                    q.add(curr.right);
+            }
                 
            return min;
         }
