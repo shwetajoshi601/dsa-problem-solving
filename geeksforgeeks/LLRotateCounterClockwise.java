@@ -101,5 +101,32 @@
             // return the rotated list
             return newHead;
         }
+
+        // Approach-2: Make the list circular and update the head
+        public Node rotate(Node head, int k) { 
+            if(head == null) return head;
+            
+            Node curr = head;
+            
+            //travserse till the end
+            while(curr.next != null)
+                curr = curr.next;
+            
+            // make the list circular    
+            curr.next = head;
+            
+            // now traverse till the kth node
+            int i=0;
+            while(i++ < k && curr!=null)
+                curr=curr.next;
+            
+            // set the new head as k+1th node
+            Node newHead = curr.next;
+            // terminate
+            curr.next = null;
+            
+            // since the list is circular the last node already points to the head making the list complete
+            return newHead;
+        }
     }
     
