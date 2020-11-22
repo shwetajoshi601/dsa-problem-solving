@@ -4,6 +4,30 @@ import java.io.*;
 
 class ArrFindTwoRepeatingElements
  {
+	// O(n) time, O(n) space
+	public Pair twoRepeated(int arr[], int N){
+		int[] map = new int[N];
+		
+        for(int i=0; i<arr.length;i++) {
+            map[arr[i]-1]++;
+        }
+        
+        int first = -1, second = -1;
+        for(int i=0; i<map.length; i++) {
+            if(map[i] > 1 && first == -1)
+                first = i+1;
+            else if(map[i] > 1 && first != -1)
+                second = i+1;
+        }
+        
+        Pair pair = new Pair();
+        pair.first = first;
+        pair.second = second;
+        
+        return pair;
+    }
+
+	// O(n) time, O(1) space
     static void findRepeatingNums(int[] nums) {
         // System.out.println(nums.length);
         
