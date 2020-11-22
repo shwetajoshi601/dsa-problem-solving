@@ -25,4 +25,29 @@ class ArrPascalsTriangle2 {
         
         return Arrays.asList(res);
     }
+
+    // a more simple solution
+    public List<Integer> getRow2(int rowIndex) {
+        // for 3rd index, there would be at the most 4 elements
+        Integer[] res = new Integer[rowIndex+1];
+        
+        // initialize all array elements to 1
+        Arrays.fill(res, 1);
+        // rowIndex = 4
+        // res = [1,1,1,1]
+        
+        // over write the array with the current row
+        for(int i=1; i < rowIndex; i++) {
+            // start from the last element of the row since elements get overwritten
+            // i=1, j=1 -> [1,2,1,1]
+            // i=2, j=2 -> [1,2,3,1]
+            // i=2, j=1 -> [1,3,3,1]
+            // i=3 -> stop
+            for(int j=i; j>0; j--) {
+                res[j] = res[j-1] + res[j];
+            }
+        }
+        
+        return Arrays.asList(res);
+    }
 }
