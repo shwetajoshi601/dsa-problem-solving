@@ -26,4 +26,24 @@ class RemoveDuplicatesSortedArray {
         // it adds the next unique element
         return uniqueCount+1;
     }
+
+    // a simpler solution - O(n), O(1) space
+    public int removeDuplicates(int[] nums) {
+        // marks the current pos
+        int i=0;
+        
+        // loop through to skip over the duplicates
+        for(int j=1; j<nums.length; j++) {
+            // when a new number is found
+            if(nums[i] != nums[j]) {
+                // i is at the previous number, so move one step ahead
+                i++;
+                // add the new unique number at the pos given by i
+                nums[i] = nums[j];
+            }
+        }
+        
+        // return length
+        return i+1;
+    }
 }
