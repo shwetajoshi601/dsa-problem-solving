@@ -1,4 +1,5 @@
 class ArrThreeSum {
+    // O(N^2) time, O(1) space -> modifies the array
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         // reduce the problem to a two sum problem.
