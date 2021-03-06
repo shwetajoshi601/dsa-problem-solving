@@ -70,4 +70,58 @@ class LLAddTwoNumbersII {
         // the resulting number is also in reverse order, hence reverse it back
         return reverse(head.next);
     }
+
+    // Solution -2: Follow up: Modifying the list is not allowed
+
+    public Stack<Integer> createStackFromLL(ListNode l) {
+        Stack<Integer> st = new Stack<Integer>();
+        while(l != null) {
+            st.push(l.val);
+            l=l.next;
+        }
+        
+        return st;
+    }
+    
+    // without reversing, using a stack    
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // create two stacks for the two numbers
+        Stack<Integer> s1 = createStackFromLL(l1);
+        Stack<Integer> s2 = createStackFromLL(l2);
+        
+        int carry = 0;
+        ListNode head = null;
+       
+        // traverse the two stacks
+        while(!s1.isEmpty() || !s2.isEmpty()) {
+            System.out.println("in while");
+            int sum = 0;
+            if(!s1.isEmpty()) sum+= s1.pop();
+            if(!s2.isEmpty()) sum+= s2.pop();
+
+            sum+=carry;
+            
+            carry = sum / 10;
+            sum = sum % 10;
+            
+            // add the node to the beginning of the list
+            // MSB is first
+            ListNode node = new ListNode(sum);
+            if(head == null) {
+                head = node;
+            } else {
+                node.next = head;
+                head = node;
+            }
+        }
+
+        // if there is a carry, add it
+        if(carry != 0) {
+            ListNode node = new ListNode(carry);
+            node.next = head;
+            head = node;
+        }
+        
+        return head;
+    }
 }
