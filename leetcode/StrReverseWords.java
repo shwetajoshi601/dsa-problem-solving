@@ -28,4 +28,35 @@ class StrReverseWords {
         // convert to a string joined by space
         return String.join(" ", words);
     }
+
+    // using two pointer
+    public String reverseWordsTwoPointer(String s) {
+        int i = 0;
+        int len = s.length();
+        
+        String result = "";
+        
+        while(i < len) {
+            // skip space charactes
+            while(i < len && s.charAt(i) == ' ')
+                i++;
+            
+            // now i is at a non-space character - start of a word
+            int j = i;
+            // find the end of the word
+            while(j < len && s.charAt(j) != ' ')
+                j++;
+            
+            // pick the word
+            String word = s.substring(i, j);
+            System.out.println(word);
+            
+            // add to the result
+            result = result.length() == 0 ? word : word + " " + result;
+            // move to the next character afte the previous word
+            i = j + 1;
+        }
+        
+        return result.trim();
+    }
 }
