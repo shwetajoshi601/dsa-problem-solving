@@ -82,4 +82,27 @@ class StrRomanToInteger {
         
         return result;
     }
+
+    // easiest solution -> traverse the string backwards
+    public int romanToInt(String s) {
+        int result = 0;
+        
+        // add the value of last character
+        result+=value(s.charAt(s.length()-1));
+        
+        // traverse backwards fom second last character
+        for(int i = s.length() - 2; i >= 0; i--) {
+            // check the current and next character values
+            if(value(s.charAt(i)) < value(s.charAt(i+1))) {
+                // if curr < next -> subtract from the result
+                // this works because subtracting the two nos and adding (next-curr) to the result is equivalent to subtracting the curr from result,
+                result-=value(s.charAt(i));
+            } else {
+                // if not, add to the result
+                result+=value(s.charAt(i));
+            }
+        }
+        
+        return result;
+    }
 }
