@@ -43,6 +43,47 @@ class StrLongestSubstringWithKUnique {
         return maxLen + 1;
     }
 
+    // O(n) - sliding window variable length, according to Aditya Verma
+    public int longestkSubstr(String s, int k) {
+        // map to store chars -> frequency counts
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        int max = -1;
+        
+        int i=0;
+        
+        for(int j=0; j<s.length(); j++) {
+            // add the character to the map
+            map.put(s.charAt(j), map.getOrDefault(s.charAt(j), 0)+1);
+            
+            // size of the map gives us the number of unique characters
+            // check if it equals k
+            if(map.size() == k) {
+                // potential candidate
+                // update the max length if its > than current length
+                max = Math.max(max, j-i+1);
+            } else if(map.size() > k) {
+                // exceeds the required number
+                // remove elements
+                // move the window, hence move elements at pos i
+                while(i <= j && map.size() > k) {
+                    if(map.containsKey(s.charAt(i))) {
+                        int freq = map.get(s.charAt(i));
+                        // pre-increment is important here
+                        map.put(s.charAt(i), --freq);
+            
+                        // now if the count becomes 0
+                        // remove the element from the map
+                        if(map.get(s.charAt(i)) == 0)
+                            map.remove(s.charAt(i));
+                    }
+                    i++;
+                    
+                }
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

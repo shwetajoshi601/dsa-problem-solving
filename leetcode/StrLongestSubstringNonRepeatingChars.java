@@ -26,4 +26,38 @@ class StrLongestSubstringNonRepeatingChars {
         
         return maxLen;
     }
+
+    // similar approach - Aditya Verma's video for sliding window
+    public int lengthOfLongestSubstring(String s) {
+        // if(s.length() == 0) return 0;
+        // if(s.length() == 1) return 1;
+        
+        // char -> freq
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        
+        // start index of the longest substring
+        int i = 0, maxLen = 0;
+        
+        for(int j=0; j<s.length(); j++) {
+            map.put(s.charAt(j), map.getOrDefault(s.charAt(j), 0) + 1);
+            
+            if(map.size() == j-i+1) {
+                // all unique -> number of distinct chars in map = length of substr
+                maxLen = Math.max(maxLen, j-i+1);
+            } else if(map.size() < j-i+1) {
+                // reduce the window size
+                while(map.size() < j-i+1) {
+                    int startCount = map.get(s.charAt(i));
+                    map.put(s.charAt(i), --startCount);
+
+                    if(map.get(s.charAt(i)) == 0)
+                        map.remove(s.charAt(i));
+
+                    i++;
+                }
+            }
+        }
+        
+        return maxLen;
+    }
 }
