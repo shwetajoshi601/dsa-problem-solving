@@ -176,4 +176,32 @@ class Tree
             result.add(res.pop());
         }
     }
+
+    // iterative soln using one stack -> this trick also works for preorder and inorder traversals
+    void getPostorderIterativeUsingOneStack(Node root, ArrayList<Integer> result) {
+        // simulating recursive behavior
+        // keep the traversal state -> node and the number of times it is visited
+        Stack<Pair> st = new Stack<Pair>();
+        // 0 indicates the node has just begun exploring
+        st.push(new Pair(root, 0));
+        
+        while(!st.isEmpty()) {
+            Pair p = st.pop();
+            Node curr = p.curr;
+            int count = p.countVisited;
+            
+            // 3 indicates the node has been completely explored
+            if(curr == null || count == 3) continue;
+            
+            // each time a node is visited, increment the count and push onto the stack
+            st.push(new Pair(curr, count+1));
+            
+            // if the node is just begun exploring, then we need to traverse left (LRD)
+            if(count == 0) st.push(new Pair(curr.left, 0));
+            // count 1 indicates the left subtree is explored, so move right
+            else if(count == 1) st.push(new Pair(curr.right, 0));
+            // count 2 indicates the both left and right subtrees are explored, now process the root
+            else if(count == 2) result.add(curr.data);
+        }
+    }
 }
