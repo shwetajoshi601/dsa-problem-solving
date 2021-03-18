@@ -115,3 +115,73 @@ class BinaryTree
      }
     }
 }
+
+//------------------without modifying the node - create another Pair class----------------------
+
+//User function Template for Java
+
+
+/*class Node
+{
+    int data;
+    Node left, right;
+    
+    Node(int key)
+    {
+        data = key;
+        left = right = null;
+    }
+}*/
+
+class Pair {
+    int hd;
+    Node node;
+    
+    Pair(int hd, Node node) {
+        this.hd = hd;
+        this.node = node;
+    }
+}
+
+class BinaryTree
+{
+    static ArrayList <Integer> verticalOrder(Node root)
+    {
+        // map to store the hd -> list of nodes with hd
+        Map<Integer, ArrayList<Integer>> map = new TreeMap<Integer, ArrayList<Integer>>();
+        Queue<Pair> q = new LinkedList<Pair>();
+        // store the hd along with each node
+        q.add(new Pair(0, root));
+        
+        while(!q.isEmpty()) {
+            Pair curr = q.poll();
+            int hd = curr.hd;
+            Node node = curr.node;
+            
+            if(map.containsKey(hd)) {
+                ArrayList<Integer> l = map.get(hd);
+                l.add(node.data);
+            } else {
+                ArrayList<Integer> l = new ArrayList<Integer>();
+                l.add(node.data);
+                map.put(hd, l);
+            }
+            
+            if(node.left != null) {
+                q.add(new Pair(hd-1, node.left)); 
+            }
+            
+            if(node.right != null) {
+                q.add(new Pair(hd+1, node.right));
+            }
+        }
+        
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        
+        for(Map.Entry<Integer, ArrayList<Integer>> e: map.entrySet()) {
+            result.addAll(e.getValue());
+        }
+        
+        return result;
+    }
+}
