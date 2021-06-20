@@ -13,7 +13,7 @@
         }
         
     }
-    class GFG{
+    class LLInsertNodeInSortedList{
         static void printList(Node node) 
         { 
             while (node != null) 
@@ -63,7 +63,7 @@
         }*/
     
     // sortedInsert method should return the head of the modified linked list.
-    class LLInsertNodeInSortedList {
+    class Solution {
         Node sortedInsert(Node head, int key) {
             // empty list
             if(head == null) {
@@ -95,6 +95,32 @@
                 Node n = new Node(key);
                 q.next = n;
             }
+            
+            return head;
+        }
+
+        Node sortedInsertWay2(Node head, int key) {
+            Node newNode = new Node(key);
+            
+            // insert at head
+            if(head == null || head.data >= key) {
+                newNode.next = head;
+                head = newNode;
+                return head;
+            }
+                
+            Node p = head, q = head;
+            
+            // keep a pointer at previous and move ahead until a value > key is found
+            while(p != null && p.data < key) {
+                q = p;
+                p = p.next;
+            }
+            
+            // found a node larger than the key
+            // insert it before the larger number
+            q.next = newNode;
+            newNode.next = p;
             
             return head;
         }

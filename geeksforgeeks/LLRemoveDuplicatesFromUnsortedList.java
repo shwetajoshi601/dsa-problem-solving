@@ -109,4 +109,28 @@ class GfG
          
          return head;
     }
+
+    public Node removeDuplicatesWithoutExtraSpace(Node head) 
+    {
+         // Without using extra space
+         if(head == null || (head != null && head.next == null))
+            return head;
+            
+         Node curr = head;
+         
+         while(curr != null) {
+             Node runner = curr;
+             
+             while(runner != null && runner.next != null) {
+                 if(curr.data == runner.next.data)
+                    runner.next = runner.next.next;
+                 else
+                    runner = runner.next;
+             }
+             
+             curr = curr.next;
+         }
+         
+         return head;
+    }
 }
