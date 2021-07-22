@@ -43,4 +43,28 @@ class BTMinDepth {
         }
         return depth;
     }
+
+    // recursive, O(n)/O(n)
+    public int minDepth(TreeNode root) {
+        if(root == null)
+            return 0;
+        
+        // base condition
+        if(root.left == null && root.right == null)
+            return 1;
+        
+        // when we find the min we also need to be careful about skew trees
+        // if we just take min of left right and add 1, it gives incorrect depth
+        // hence we need to check if left of right subtree is null
+        // and recurse only on the subtree that is present
+        if(root.left == null)
+            return minDepth(root.right) + 1;
+        
+        if(root.right == null)
+            return minDepth(root.left) + 1;
+        
+        // both subtrees present
+        // take the min depth of both and add 1 for the current node
+        return Math.min(minDepth(root.left), minDepth(root.right))+1;
+    }
 }
