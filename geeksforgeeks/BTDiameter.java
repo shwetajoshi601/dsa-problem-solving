@@ -109,14 +109,17 @@ class Tree {
         // base case
         if(root == null) return 0;
         
-        
+        // if you observe a tree, the longest path between two leaves passing through the root
+        // is nothing but the sum of their heights + 1 for the root node
+        // now, the diameter could also be the length of the path not passing through the root
+        // for this reason, we need to find diameters of its subtrees
         int leftHeight = height(root.left);
         int rightHeight = height(root.right);
         
         int lDiam = diameter(root.left);
         int rDiam = diameter(root.right);
         
-        // diameter is the max of height of left + height of right + 1, max of left and right diameter
+        // finally, diameter is the max of height of left + height of right + 1 (this is the longest path passing through the root) and the max of left and right diameter
         return Math.max(leftHeight+rightHeight+1, Math.max(lDiam, rDiam));
     }
     
