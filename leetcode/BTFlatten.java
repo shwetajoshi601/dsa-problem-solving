@@ -71,4 +71,39 @@ public class BTFlatten {
             p = p.right;
         }
     }
+
+    // in-place solution
+    // make sure to comment the other methods before running
+    public void flatten(TreeNode root) {
+        flattenHelper(root);
+     }
+     
+     TreeNode flattenHelper(TreeNode root) {
+         if(root == null)
+            return root;
+         
+         // use another pointer for traversal
+         TreeNode curr = root;
+         // save the left and right child for later use
+         TreeNode left = curr.left;
+         TreeNode right = curr.right;
+         
+         // since it has to be in preorder
+         // the right point points to the left node first
+         // hence we recursively flatten the left child and update the right pointer
+         curr.right = flattenHelper(left);
+         // set the left to null
+         curr.left = null;
+         
+         // the earlier right child should come after all of the left nodes
+         // hence move to the extreme right
+         while(curr.right != null)
+             curr = curr.right;
+         
+         // now recursively flatten the right subtree
+         curr.right = flattenHelper(right);
+         
+         // the root remains unchanged
+         return root;
+     }
 }
