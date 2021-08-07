@@ -43,4 +43,27 @@ class BSTFindKthSmallest {
         
 //             return helper(root.right, k, count);
 //     }
+
+        int count = 0;
+        int helper(TreeNode root, int k) {
+            if(root == null)
+                return -1;
+
+            int leftSmall = helper(root.left, k);
+            if(leftSmall != -1)
+                return leftSmall;
+
+            count++;
+            if(count == k)
+                return root.val;
+
+            int rightSmall = helper(root.right, k);
+            if(rightSmall != -1)
+                return rightSmall;
+            return -1;
+        }
+        public int kthSmallest(TreeNode root, int k) {
+            if(root == null) return -1;
+            return helper(root, k); 
+        }
 }
