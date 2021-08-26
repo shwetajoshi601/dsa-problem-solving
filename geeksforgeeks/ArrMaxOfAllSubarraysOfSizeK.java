@@ -61,4 +61,52 @@ class Solution
         
         return maxList;
     }
+
+    //Function to find maximum of each subarray of size k.
+    // TODO: not yet working, WIP
+    static ArrayList <Integer> max_of_subarrays_better(int arr[], int n, int k)
+    {
+        ArrayList<Integer> maxList = new ArrayList<Integer>();
+        // we use a deque to keep track of the maximum elements in the current window
+        Deque<Integer> queue = new LinkedList<Integer>();
+        
+        int i = 0, j =0;
+        
+        while(j < n) {
+            // window size
+            if(j-i+1 < k) {
+                // add elements
+                // add to the queue only is they are maximum
+                // any elements already present in the queue and less
+                // are removed, smaller elements aren't useful
+                while(!queue.isEmpty() && queue.peekLast() < arr[j])
+                    queue.removeLast();
+                    
+                // add the current element to the queue
+                queue.addLast(arr[j]);
+                j++;
+            } else if(j-i+1 == k) {
+                // find the maximum of the window
+                // we only store maximal elements in the queue
+                // hence the max will be at the front
+                int max = Integer.MIN_VALUE;
+                if(!queue.isEmpty()) {
+                    max = queue.peekFirst();
+                    maxList.add(max);   
+                }
+                
+                // now slide the window, remove the leftmost element
+                // if the element being excluded from the window
+                // is the max of the previous window
+                // we need to remove it from the queue -> from the front
+                if(max == arr[i])
+                    queue.removeFirst();
+                    
+                i++;
+                j++;
+            }
+        }
+        
+        return maxList;
+    }
 }
