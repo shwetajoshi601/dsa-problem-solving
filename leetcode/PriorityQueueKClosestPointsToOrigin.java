@@ -14,6 +14,10 @@ class PriorityQueueKClosestPointsToOrigin {
             else if(dist1 > dist2)
                 return 1;
             return 0;
+
+            // this can also just the written as
+            // return ((b[0]*b[0]) + (b[1]*b[1])) - ((a[0]*a[0]) + (a[1]*a[1]))
+            // we just need to know which one is greater, taking sqrt is not necessary
         });
         
         for(int i = 0; i<points.length; i++) {
