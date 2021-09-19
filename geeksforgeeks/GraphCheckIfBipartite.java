@@ -54,6 +54,7 @@
             return true;
         }
         
+        // Using BFS
         boolean checkIsBipartite(ArrayList<ArrayList<Integer>> adj, int[] color, int s) {
             // perform a bfs traversal
             Queue<Integer> q = new LinkedList<Integer>();
@@ -75,6 +76,30 @@
                     } else if(color[curr] == color[n])
                         return false;
                 }
+            }
+            
+            return true;
+        }
+
+        // using DFS
+        boolean checkIsBipartite(ArrayList<ArrayList<Integer>> adj, int[] color, int s) {
+            // perform a dfs traversal
+            if(color[s] == -1)
+                color[s] = 0;
+            
+            // traverse through adjacent nodes    
+            for(Integer i: adj.get(s)) {
+                // if the node is not colored
+                if(color[i] == -1) {
+                    // color it with the opposite color of s (adjacent nodes should have different color)
+                    color[i] = 1 - color[s];
+                    // recursively call dfs on the adjacent node
+                    if(!checkIsBipartite(adj, color, i))
+                        return false;
+                // if already colored
+                // check if the color is the same
+                } else if(color[i] == color[s])
+                    return false;
             }
             
             return true;
