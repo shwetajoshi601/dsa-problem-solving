@@ -1,3 +1,5 @@
+import java.util.*;
+
 class ArrPascalsTriangle {
 
     public List<List<Integer>> generateBetterSoln(int numRows) {
@@ -18,7 +20,10 @@ class ArrPascalsTriangle {
             // first element of every row is 1
             curr.add(1);
             
-            // sum consecutive two nums from the prev row
+            // for i=2
+            // current row has i+1 elements -> 3rd row, index 2 -> 3 elements
+            // previous row has i elements -> 2nd row, index 1 -> 2 elements
+            // iterate through the previous row and add adjacent elements
             for(int j=1; j<i; j++)
                 curr.add(prev.get(j-1) + prev.get(j));
             
