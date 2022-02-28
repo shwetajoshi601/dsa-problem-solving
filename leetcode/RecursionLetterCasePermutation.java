@@ -26,21 +26,16 @@ class RecursionLetterCasePermutation {
             output+=curr;
             getPermutations(input, output, result);
         } else {
-        // for chars, two possible choices, as it is and change the case
+        // for chars, two possible choices, as it is and change the case (one lowercase one uppercase)
             String out1 = output;
             String out2 = output;
             
-            out1+=curr;
-            out2+=changeCase(curr);
+            out1+=Character.toLowerCase(curr);
+            out2+=Character.toUpperCase(curr);
             
             // recursively call with the two choices
             getPermutations(input, out1, result);
             getPermutations(input, out2, result);
         }
-    }
-    
-    // function to change the case of a character
-    char changeCase(char c) {
-        return Character.isLowerCase(c) ? Character.toUpperCase(c) : Character.toLowerCase(c); 
     }
 }
